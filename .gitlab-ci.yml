@@ -1,0 +1,21 @@
+before_script:
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - echo "$DEPLOYKEY" > ~/.ssh/deploykey
+  - chmod 700 ~/.ssh/deploykey
+
+after_script:
+  - rm -f ~/.ssh/deploykey
+
+stages:
+  - deploykeys
+
+Deploy Keys:
+  stage: deploykeys
+  tags: [core]
+  script:
+    - 'bash ./scripts/instroles.sh'
+    - 'ansible-playbook -i hosts deploy.yml'
+  when: manual

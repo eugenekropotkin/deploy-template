@@ -1,0 +1,4 @@
+#- src: https://
+#  version: master
+#  scm: git
+#  name: debstretch

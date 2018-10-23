@@ -1,1 +1,1 @@
-# deploy-template
+# GitLab/CI deploy-template
