@@ -1,2 +1,9 @@
 ---
+- hosts: all
+  gather_facts: False
+  
+  tasks:
+  - name: install python
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
 - hosts: desthosts
